@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Rajesh Portfolio</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial;
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        background: #0f172a;
+        color: white;
+      }
+      
+      nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        background: #111827;
+        padding: 20px 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+      }
+      
+      nav h2 {
+        color: #38bdf8;
+      }
+      
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+      
+      nav ul li {
+        margin-left: 30px;
+      }
+      
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: 0.3s;
+      }
+      
+      nav ul li a:hover {
+        color: #38bdf8;
+      }
+      
+      section {
+        min-height: 100vh;
+        padding: 120px 80px;
+      }
+      
+      .home {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .home-text h1 {
+        font-size: 60px;
+      }
+      
+      .home-text h1 span {
+        color: #38bdf8;
+      }
+      
+      .home-text h3 {
+        margin-top: 20px;
+        font-size: 30px;
+        color: #94a3b8;
+      }
+      
+      .home-text p {
+        margin-top: 20px;
+        line-height: 30px;
+        color: #cbd5e1;
+      }
+      
+      .btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 14px 35px;
+        background: #38bdf8;
+        color: black;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+      }
+      
+      .home img {
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid #38bdf8;
+      }
+      
+      .title {
+        text-align: center;
+        font-size: 45px;
+        margin-bottom: 50px;
+        color: #38bdf8;
+      }
+      
+      .about-text {
+        max-width: 900px;
+        margin: auto;
+        line-height: 38px;
+        font-size: 22px;
+        color: #e2e8f0;
+        text-align: left;
+        background: #1e293b;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      }
+      
+      .about-text b {
+        color: #38bdf8;
+      }
+      
+      .about-text span {
+        color: #facc15;
+        font-weight: bold;
+        font-size: 24px;
+      }
+      
+      /* NEW SKILLS CSS */
+      
+      .skills-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+        margin-top: 50px;
+        flex-wrap: wrap;
+      }
+      
+      .skills-text {
+        flex: 1;
+      }
+      
+      .skills-text p {
+        font-size: 20px;
+        line-height: 35px;
+        margin-bottom: 40px;
+        color: #cbd5e1;
+      }
+      
+      .skill-bar {
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      
+      .info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      
+      .info i {
+        color: #38bdf8;
+        margin-right: 10px;
+      }
+      
+      .bar {
+        width: 100%;
+        height: 10px;
+        background: #334155;
+        border-radius: 10px;
+      }
+      
+      .bar div {
+        height: 10px;
+        border-radius: 10px;
+        background: #38bdf8;
+      }
+      
+      .python {
+        width: 95%;
+      }
+      
+      .django {
+        width: 90%;
+      }
+      
+      .html {
+        width: 95%;
+      }
+      
+      .css {
+        width: 90%;
+      }
+      
+      .javascript {
+        width: 75%;
+      }
+      
+      .bootstrap {
+        width: 85%;
+      }
+      
+      .skills-img img {
+        width: 500px;
+        border-radius: 20px;
+      }
+      
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      
+      .project-box {
+        background: #1e293b;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      
+      .project-box img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      
+      .project-box div {
+        padding: 20px;
+      }
+      
+      .project-box h3 {
+        margin-bottom: 15px;
+      }
+      
+      .contact-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+        margin-top: 50px;
+        flex-wrap: wrap;
+      }
+      
+      .contact-info {
+        flex: 1;
+        background: #1e293b;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      }
+      
+      .contact-info h2 {
+        font-size: 35px;
+        margin-bottom: 20px;
+        color: #38bdf8;
+      }
+      
+      .contact-info p {
+        line-height: 32px;
+        color: #cbd5e1;
+        margin-bottom: 30px;
+        font-size: 18px;
+      }
+      
+      .info-box {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+        font-size: 18px;
+      }
+      
+      .info-box i {
+        width: 50px;
+        height: 50px;
+        background: #38bdf8;
+        color: #0f172a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 20px;
+      }
+      
+      .contact-form {
+        flex: 1;
+        background: #1e293b;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      }
+      
+      .input-box {
+        margin-bottom: 25px;
+      }
+      
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 18px;
+        border: none;
+        outline: none;
+        border-radius: 12px;
+        background: #0f172a;
+        color: white;
+        font-size: 17px;
+      }
+      
+      .contact-form textarea {
+        resize: none;
+      }
+      
+      .contact-form button {
+        width: 100%;
+        padding: 18px;
+        border: none;
+        border-radius: 12px;
+        background: #38bdf8;
+        color: #0f172a;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      
+      .contact-form button:hover {
+        background: #0ea5e9;
+      }
+      
+      @media (max-width: 900px) {
+        .contact-container {
+          flex-direction: column;
+        }
+      }
+      .email-link {
+        color: #38bdf8;
+        text-decoration: none;
+        cursor: pointer;
+        display: inline-block;
+      }
+      
+      .email-link:hover {
+        text-decoration: underline;
+      }
+      
+      .footer {
+        background: #0a0f1c;
+        color: #cbd5e1;
+        padding: 60px 20px 25px;
+        font-family: 'Segoe UI', sans-serif;
+      }
+      
+      /* MAIN GRID */
+      .footer-container {
+        max-width: 1100px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      
+      /* BRAND */
+      .footer-brand h2 {
+        font-size: 30px;
+        color: #38bdf8;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+      }
+      
+      .footer-brand p {
+        color: #94a3b8;
+        margin: 5px 0;
+        line-height: 1.6;
+      }
+      
+      /* CONTACT BOX */
+      .footer-box h3 {
+        font-size: 16px;
+        color: #ffffff;
+        margin-bottom: 12px;
+        position: relative;
+      }
+      
+      .footer-box h3::after {
+        content: '';
+        width: 35px;
+        height: 2px;
+        background: #38bdf8;
+        display: block;
+        margin-top: 6px;
+        border-radius: 5px;
+      }
+      
+      .footer-box p {
+        color: #94a3b8;
+        margin: 6px 0;
+        transition: 0.3s;
+      }
+      
+      /* hover subtle feel */
+      .footer-box p:hover {
+        color: #38bdf8;
+        transform: translateX(5px);
+      }
+      
+      /* BOTTOM */
+      .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid #1f2937;
+        color: #64748b;
+        font-size: 13px;
+      }
+      
+      /* RESPONSIVE */
+      @media (max-width: 600px) {
+        .footer-container {
+          flex-direction: column;
+          text-align: center;
+        }
+      
+        .footer-box h3::after {
+          margin: 6px auto 0;
+        }
+      }
+      
+      @media (max-width: 900px) {
+        .home {
+          flex-direction: column;
+          text-align: center;
+        }
+      
+        .home img {
+          margin-top: 40px;
+          width: 250px;
+          height: 250px;
+        }
+      
+        nav {
+          padding: 20px;
+        }
+      
+        section {
+          padding: 120px 30px;
+        }
+      
+        .skills-section {
+          flex-direction: column;
+        }
+      
+        .skills-img img {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h2>Rajesh Devops</h2>
+
+      <ul>
+        <li>
+          <a href="#home">Home</a>
+        </li>
+        <li>
+          <a href="#about">About</a>
+        </li>
+        <li>
+          <a href="#skills">Skills</a>
+        </li>
+        <li>
+          <a href="#work">Work</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="home" id="home">
+      <div class="home-text">
+        <h1>Hello, I'm <span>Rajesh Lagdhir</span></h1>
+
+        <h3>Python Django Developer</h3>
+
+        <p>I create modern and responsive websites using Python, Django, HTML, CSS and JavaScript.</p>
+
+        <a href="#contact" class="btn">Hire Me</a>
+      </div>
+
+      <div class="home-img">
+        <img src="{% static 'images/myphoto.png' %}" alt="profile" />
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h1 class="title">About Me</h1>
+
+      <p class="about-text">
+        <span>Hello!</span> I'm <b>Rajesh</b>, a passionate and dedicated
+        <b>Python Django Developer</b>.
+
+        I have strong knowledge of <b>Python</b>, <b>Django</b>,
+        <b>HTML</b>, <b>CSS</b>,<b>JavaScript</b>, and Modern UI Design. <br /><br />
+
+        I enjoy creating <span>Responsive</span>,
+        <span>User-Friendly</span>, and Professional Websites that provide a smooth and attractive user experience.
+
+        I am always excited to learn new technologies and continuously improve my development skills. <br /><br />
+
+        My goal is to build <span>High-Quality Web Applications</span>
+        that are Fast, Secure, Efficient, and Visually Attractive. <br /><br />
+
+        I love solving Real-World Problems using Clean and Scalable Code. <br /><br />
+
+        Currently, I am focusing on improving my
+        <b>Django Backend Development</b> skills while also creating Modern Frontend Designs for complete Full-Stack Web Solutions.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h1 class="title">My Skills</h1>
+
+      <div class="skills-section">
+        <div class="skills-text">
+          <p>I have strong knowledge of Python, Django, HTML, CSS, JavaScript, and Bootstrap. I enjoy building modern, responsive, and user-friendly web applications with clean design and efficient backend functionality.</p>
+
+          <!-- Python -->
+          <div class="skill-bar">
+            <div class="info">
+              <span><i class="fa-brands fa-python"></i> Python</span>
+              <span>85%</span>
+            </div>
+
+            <div class="bar">
+              <div class="python"></div>
+            </div>
+          </div>
+
+          <!-- Django -->
+          <div class="skill-bar">
+            <div class="info">
+              <span><i class="fa-solid fa-code"></i> Django</span>
+              <span>80%</span>
+            </div>
+
+            <div class="bar">
+              <div class="django"></div>
+            </div>
+          </div>
+
+          <!-- HTML -->
+          <div class="skill-bar">
+            <div class="info">
+              <span><i class="fa-brands fa-html5"></i> HTML</span>
+              <span>95%</span>
+            </div>
+
+            <div class="bar">
+              <div class="html"></div>
+            </div>
+          </div>
+
+          <!-- CSS -->
+          <div class="skill-bar">
+            <div class="info">
+              <span><i class="fa-brands fa-css3-alt"></i> CSS</span>
+              <span>70%</span>
+            </div>
+
+            <div class="bar">
+              <div class="css"></div>
+            </div>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="skill-bar">
+            <div class="info">
+              <span><i class="fa-brands fa-js"></i> JavaScript</span>
+              <span>60%</span>
+            </div>
+
+            <div class="bar">
+              <div class="javascript"></div>
+            </div>
+          </div>
+
+          <!-- Bootstrap -->
+          <div class="skill-bar">
+            <div class="info">
+              <span><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+              <span>85%</span>
+            </div>
+
+            <div class="bar">
+              <div class="bootstrap"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-img">
+          <img src="{% static 'images/skill.jpg' %}" alt="" />
+        </div>
+      </div>
+    </section>
+    <section id="work">
+      <h1 class="title">My Projects</h1>
+
+      <div class="projects">
+        <!-- Student Management System -->
+        <div class="project-box">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="" />
+
+          <div>
+            <h3>Student Management System</h3>
+
+            <p>A complete Django-based student management system with attendance tracking, result management, admin panel, and student record handling.</p>
+          </div>
+        </div>
+
+        <!-- Ice Cream Website -->
+        <div class="project-box">
+          <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800" alt="" />
+
+          <div>
+            <h3>Ice Cream Shop Website</h3>
+
+            <p>A modern and responsive ice cream website with beautiful UI design, product showcase, offers section, and online order layout.</p>
+          </div>
+        </div>
+
+        <!-- Maruti Suzuki Website -->
+        <div class="project-box">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800" alt="" />
+
+          <div>
+            <h3>Maruti Suzuki Showroom Website</h3>
+
+            <p>A professional car showroom website inspired by Maruti Suzuki featuring car listings, showroom details, and modern frontend design.</p>
+          </div>
+        </div>
+
+        <!-- Portfolio Website -->
+        <div class="project-box">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="" />
+
+          <div>
+            <h3>Personal Portfolio Website</h3>
+
+            <p>A responsive personal portfolio website created to showcase my skills, projects, achievements, and contact information professionally.</p>
+          </div>
+        </div>
+
+        <!-- E-Commerce Website -->
+        <div class="project-box">
+          <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=800" alt="" />
+
+          <div>
+            <h3>E-Commerce Website</h3>
+
+            <p>Work in Progress — Currently developing a modern e-commerce platform with product management, shopping cart, and secure payment integration.</p>
+          </div>
+        </div>
+
+        <!-- Hospital Management -->
+        <div class="project-box">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800" alt="" />
+
+          <div>
+            <h3>Hospital Management System</h3>
+
+            <p>Work in Progress — Building a hospital management system for patient records, appointments, doctor management, and billing features.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h1 class="title">Contact Me</h1>
+
+      <div class="contact-container">
+        <div class="contact-info">
+          <h2>Let's Work Together</h2>
+
+          <p>Feel free to contact me for website development, Django projects, frontend design, or freelance work. I would love to connect with you.</p>
+
+          <div class="info-box">
+            <i class="fa-solid fa-user"></i>
+            <span>Rajesh Lagdhir</span>
+          </div>
+
+          <div class="info-box">
+            <i class="fa-solid fa-envelope"></i>
+            <span>rajeshlagdhir07@gmail.com</span>
+          </div>
+
+          <div class="info-box">
+            <i class="fa-solid fa-phone"></i>
+            <span>+91 7203928160</span>
+          </div>
+
+          <div class="info-box">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Ahmedabad, Gujarat</span>
+          </div>
+        </div>
+
+        <form class="contact-form" method="post">
+          {% csrf_token %}
+          <div class="input-box">
+            <input type="text" name="name" placeholder="Enter Your Name" required />
+          </div>
+
+          <div class="input-box">
+            <input type="email" name="email" placeholder="Enter Your Email" required />
+          </div>
+
+          <div class="input-box">
+            <input type="text" name="phone" placeholder="Enter Your Phone Number" required />
+          </div>
+
+          <div class="input-box">
+            <textarea rows="6" name="message" placeholder="Write Your Message"></textarea>
+          </div>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <h2>Rajesh</h2>
+          <p>Python | Django | Flask Developer</p>
+          <p>Building clean & scalable web applications 🚀</p>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/lagdhir_rajesh_2212?igsh=ano0NXZyNWJqOWs2" target="_blank" class="social">
+            <i class="fa-brands fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+          <br /><br />
+
+          <a href="https://www.linkedin.com/in/rajesh-lagdhir" target="_blank" class="social">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <br /><br />
+
+          <a href="mailto:rajeshlagdhir07@gmail.com" class="email-link">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email</span>
+          </a>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <p>📧 rajeshlagdhir07@gmail.com</p>
+          <p>📍 Gujarat, India</p>
+          <p>⚡ Available for internships</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Rajesh Lagdhir • Designed & Built with ❤️ using Django</p>
+      </div>
+    </footer>
+  </body>
+</html>
