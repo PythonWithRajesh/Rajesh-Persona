@@ -11,7 +11,6 @@ def home(request):
         phone = request.POST.get('phone', '').strip()
         message = request.POST.get('message', '').strip()
 
-        # send ONLY if all required fields exist
         if name and email and message:
 
             full_message = f"""
@@ -23,15 +22,19 @@ Message:
 {message}
 """
 
-            send_mail(
-                subject="New Contact Form Message",
-                message=full_message,
-                from_email=settings.EMAIL_HOST_USER,
-                recipient_list=['rajeshlagdhir07@gmail.com'],
-                fail_silently=False,
-            )
+            try:
+                send_mail(
+                    subject="New Contact Form Message",
+                    message=full_message,
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=['rajeshlagdhir07@gmail.com'],
+                    fail_silently=False,
+                )
+            except Exception as e:
+                return render(request, 'main/index.html', {
+                    'error': str(e)
+                })
 
-        # 🔥 VERY IMPORTANT (prevents refresh resend)
         return redirect(request.path)
 
     return render(request, 'main/index.html')
