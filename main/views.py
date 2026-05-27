@@ -39,10 +39,8 @@ Message:
                 context['success'] = "Message sent successfully!"
 
             except Exception as e:
-
-                print(e)
-
-                context['error'] = "Failed to send message."
+                return render(request, 'main/index.html', {'error': str(e)
+    })
 
         else:
 
