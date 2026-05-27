@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings
 
+
 def home(request):
+
+    context = {}
 
     if request.method == "POST":
 
@@ -23,18 +26,25 @@ Message:
 """
 
             try:
+
                 send_mail(
-                    subject="New Contact Form Message",
+                    subject=f"New Contact Form Message from {name}",
                     message=full_message,
                     from_email=settings.EMAIL_HOST_USER,
                     recipient_list=['rajeshlagdhir07@gmail.com'],
                     fail_silently=False,
                 )
+
+                context['success'] = "Message sent successfully!"
+
             except Exception as e:
-                return render(request, 'main/index.html', {
-                    'error': str(e)
-                })
 
-        return redirect(request.path)
+                print(e)
 
-    return render(request, 'main/index.html')
+                context['error'] = "Failed to send message."
+
+        else:
+
+            context['error'] = "Please fill all required fields."
+
+    return render(request, 'main/index.html', context)
